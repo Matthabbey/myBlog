@@ -26,3 +26,27 @@
     margin-left: 10px;
     cursor: pointer;
 }
+.singlePostIcon:first-child{
+    color: teal;
+}
+.singlePostIcon:last-child{
+    color: red;
+}
+.singlePostInfo{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Varela Round', sans-serif;
+    color: #b39656;
+}
+.singlePostDesc{
+    color: #666;
+    font-style: 18px;
+    line-height: 25px;
+
+}
+.singlePostDesc::first-letter{
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: 600;
+}
