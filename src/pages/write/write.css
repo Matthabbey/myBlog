@@ -1,13 +1,30 @@
 .write{
     padding-top: 15px;
 }
+.writeImg{
+    margin-left: 150px;
+    width: 70vw;
+    height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+}
 .writeForm{
 position: relative;
 }
 .writeFormGroup{
     margin-left: 150px;
     display: flex;
+    align-items: center;
 
+}
+.writeIcon{
+    width: 25px;
+    height: 25px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 .writeInput{
     font-size: 30px;
@@ -20,6 +37,7 @@ position: relative;
 }
 .writeText{
     font-size: 20px;
+    height: 100vh;
 }
 .writeSubmit{
     position: absolute;
