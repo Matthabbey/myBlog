@@ -6,7 +6,7 @@ const Settings = () => {
   return (
     <div className="settings">
       <div className="settingWrapper">
-        <div className="settingTitle">
+        <div className="settingsTitle">
           <span className="settingsUpdateTitle">Update Your Account</span>
           <span className="settingsDeleteTitle">Delete Account</span>
         </div>
@@ -22,7 +22,7 @@ const Settings = () => {
           <label>Username</label>
           <input type="text" placeholder="ayoola" />
           <label>Email</label>
-          <input type="email" placeholder="Email" />
+          <input type="email" placeholder="@mail" />
           <label>Password</label>
           <input type="password" placeholder="Password" />
           <button className="settingsSubmit">Update</button>

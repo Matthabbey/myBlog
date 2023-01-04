@@ -8,7 +8,7 @@ const Header = () => {
       </div>
       <img
         className="headerImg"
-        src={"https://source.unsplash.com/random/1400x750?sig=1"}
+        src={"https://images.pexels.com/photos/2324562/pexels-photo-2324562.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
         alt=""
       />
     </div>
