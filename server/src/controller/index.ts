@@ -34,11 +34,33 @@ export const LoginUser = async (req: Request, res: Response) =>{
         }
         else
         return res.status(400).json({message: "Wrong Credentials"})
-
-        const {password, ...other} = findUser
+        const { password, ...other} = findUser
         return res.status(200).json({message: other})
     } catch (error) {
         res.status(500).json({message: console.log(error)
         })
+    }
+}
+
+export const UpdateUser = async (req: Request, res: Response) =>{
+    if(req.body.userId === req.params.id){
+        if(req.body.password){
+            const salt = await bcrypt.genSalt(10)
+            const hash = await bcrypt.hash(req.body.password, salt)
+            req.body.password = hash
+        }
+
+        try {
+            const updateUser = await UserModel.findByIdAndUpdate(req.params.id, {
+                $set: req.body,
+                
+            }, {new: true})
+            return res.status(200).json({message: "Succssfully updated", updateUser})
+        } catch (error) {
+        return res.status(500).json({message: console.log(error)
+        })
+        }
+    }else {
+        res.status(400).json({message: "You can only update your account!!"})
     }
 }
