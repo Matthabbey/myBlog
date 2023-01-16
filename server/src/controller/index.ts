@@ -1,5 +1,5 @@
 import express, {Request, Response}from 'express'
-import { UserModel } from '../model/Users'
+import { UserInstance, UserModel } from '../model/Users'
 import bcrypt from 'bcrypt'
 
 export const RegisterUser = async (req: Request, res: Response) =>{
@@ -62,5 +62,34 @@ export const UpdateUser = async (req: Request, res: Response) =>{
         }
     }else {
         res.status(400).json({message: "You can only update your account!!"})
+    }
+}
+
+export const DeleteUser = async (req: Request, res: Response) =>{
+    try {
+        const deleteOne = await UserModel.findByIdAndDelete(req.params.id)
+        if (!deleteOne) {
+            return res.status(404).json({
+              message: "This item has been deleted",
+            });
+          }
+          return res.status(200).json({
+            message: "You have successfully deleted this User",
+          });
+    } catch (error) {
+        return res.status(500).json({message: console.log(error)})
+    }
+}
+
+export const GetUser = async (req: Request, res: Response) =>{
+    try {
+        const userId = req.params.id
+        const findUser = await UserModel.findById(userId)
+        // const { password, ...others } = findUser
+        console.log(findUser)
+        return res.status(200).json({message: "Successfully fetched", findUser})
+    } catch (error) {
+        return res.status(500).json({message: console.log(error)})
+        
     }
 }
