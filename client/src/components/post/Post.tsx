@@ -1,41 +1,32 @@
 import "./post.css";
 
-const Post = ({post}: any) => {
+interface Props {
+  post: any;
+
+}
+
+const Post: React.FC<Props> = ({ post }) => {
   return (
     <div className="post">
+      {post.photo && 
       <img
         className="postImg"
-        src={"https://source.unsplash.com/random/900x400?sig=1"}
+        src={post.photo}
         alt=""
       />
+      }
       <div className="postInfo">
         <div className="postCats">
-          <span className="postCat">Music</span>
-          <span className="postCat">LifeStyle</span>
+          {post.categories.map((cat: any)=>(
+            <span className="postCat">{cat.name}</span>
+          ))}
         </div>
-        <span className="postTitle">
-          Lorem ipsum dolor sit amet elit.
-        </span>
+        <span className="postTitle">{post.title}</span>
         <hr />
-        <span className="postDate">1 hour ago</span>
+        <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
       </div>
       <div className="postDesc">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, maxime
-        fuga error molestiae odio earum repellendus quam vitae dignissimos,
-        deserunt labore, explicabo qui magnam quae aliquam obcaecati saepe
-        adipisci. Facilis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, maxime
-        fuga error molestiae odio earum repellendus quam vitae dignissimos,
-        deserunt labore, explicabo qui magnam quae aliquam obcaecati saepe
-        adipisci. Facilis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, maxime
-        fuga error molestiae odio earum repellendus quam vitae dignissimos,
-        deserunt labore, explicabo qui magnam quae aliquam obcaecati saepe
-        adipisci. Facilis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, maxime
-        fuga error molestiae odio earum repellendus quam vitae dignissimos,
-        deserunt labore, explicabo qui magnam quae aliquam obcaecati saepe
-        adipisci. Facilis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, maxime
-        fuga error molestiae odio earum repellendus quam vitae dignissimos,
-        deserunt labore, explicabo qui magnam quae aliquam obcaecati saepe
-        adipisci. Facilis.
+      {post.desc}
       </div>
     </div>
   );
