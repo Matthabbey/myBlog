@@ -6,20 +6,24 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import './home.css'
 
 const Home = () => {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<any[]>([])
 
   useEffect(()=>{
-    fetchPost()
+    fetchPost().then((data)=>{      
+      let result = data?.data.users
+    //  let result = data?
+     
+      setPosts(result)
+    })
   }, [])
-
-
+// console.log(posts);
 
   return (
     <>
         <Header />
 
  <div className='home'>
-        <Posts />
+        <Posts  posts={posts} />
         <Sidebar />
     </div>
     </>

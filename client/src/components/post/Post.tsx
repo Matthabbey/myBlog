@@ -1,6 +1,6 @@
 import "./post.css";
 
-const Post = () => {
+const Post = ({post}: any) => {
   return (
     <div className="post">
       <img

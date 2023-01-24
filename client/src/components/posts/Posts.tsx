@@ -2,17 +2,21 @@ import React from 'react'
 import Post from '../post/Post'
 import './posts.css'
 
-const Posts = () => {
+
+interface Props{
+  posts: any[]
+}
+
+const Posts: React.FC<Props> = ({posts}) => {
+  
+  console.log(posts);
+  
   return (
     <div className='posts'>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      {posts.map((p: any)=>
+        <Post key={p._id} post={p}/>
+      )}
+      
     </div>
   )
 }
