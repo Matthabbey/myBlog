@@ -4,37 +4,48 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getSinglePost } from "../../api";
 
 
 const SinglePost = () => {
 
   const location = useLocation()
-  // console.log(location);
   
-  const path = location.pathname.split("/")[2]
+  const path = location.pathname.split("/")[2] 
+  const [post, setPost] = useState<any>({})
   // console.log(path);
-  
-  const [post, setPost] = useState({})
 
   useEffect(()=>{
-     const getPosty =async ()=>{
-        const res = await axios.get(path)
-        console.log(res.data)
-     }
-     getPosty()
-    }
-  , [])
+
+    getSinglePost(path).then((response)=>{
+      let result = (response?.data.findUser)
+      setPost(result)
+    })
+
+    // const getSingle = async() => {
+    //   const response = await getSinglePost()
+    //   console.log(response?.data.findUser);
+      
+    //   setPost(response?.data.findUser) 
+    // }
+    // getSingle()
+      }
+  , [path])
+
 
 
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
+        {post.photo &&
+        
         <img
           className="singlePostImg"
-          src={"https://source.unsplash.com/random/900x550?sig=1"}
+          src={post.photo}
           alt=""
         />
-        <h1 className="singlePostTitle">{}
+        }
+        <h1 className="singlePostTitle">{post.title}
           <div className="singlePostEdit">
             <FiEdit className="singlePostIcon" />
             <RiDeleteBinLine className="singlePostIcon" />
@@ -42,27 +53,11 @@ const SinglePost = () => {
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Author: <b>Ayoola</b>
+            Author: <b>{post.username}</b>
           </span>
-          <span className="singlePostDate"> 1 hour ago</span>
+          <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
         </div>
-        <p className="singlePostDesc">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non delectus
-          iure iste similique, quam labore quidem natus corporis vel adipisci
-          exercitationem, ut minus molestias earum, accusamus quasi architecto
-          tempora soluta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Non delectus
-          iure iste similique, quam labore quidem natus corporis vel adipisci
-          exercitationem, ut minus molestias earum, accusamus quasi architecto
-          tempora soluta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Non delectus
-          iure iste similique, quam labore quidem natus corporis vel adipisci
-          exercitationem, ut minus molestias earum, accusamus quasi architecto
-          tempora soluta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Non delectus
-          iure iste similique, quam labore quidem natus corporis vel adipisci
-          exercitationem, ut minus molestias earum, accusamus quasi architecto
-          tempora soluta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Non delectus
-          iure iste similique, quam labore quidem natus corporis vel adipisci
-          exercitationem, ut minus molestias earum, accusamus quasi architecto
-          tempora soluta.
+        <p className="singlePostDesc">{post.desc}
         </p>
       </div>
     </div>

@@ -12,6 +12,8 @@ const Home = () => {
     fetchPost().then((data)=>{      
       let result = data?.data.users
     //  let result = data?
+    console.log(result);
+    
      
       setPosts(result)
     })

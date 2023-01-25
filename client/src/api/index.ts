@@ -13,13 +13,13 @@ export const fetchPost = async ()=>{
     }
 }
 
-// export const getPosts = async () =>{
-//     try {
-//         const res = await axios.get(`${baseURL}api/post/`)
-//         console.log(res);
+export const getSinglePost = async (id: string) =>{
+    try {
+        const res = await axios.get(`${baseURL}api/post/${id}`)
+        // console.log(res);
         
-//         return res
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+        return res
+    } catch (error) {
+        console.log(error)
+    }
+}
