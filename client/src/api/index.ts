@@ -23,3 +23,14 @@ export const getSinglePost = async (id: string) =>{
         console.log(error)
     }
 }
+
+export const getCategory = async ()=>{
+    try {
+        const res = await axios.get(`${baseURL}api/post/`)
+        console.log(res);
+        return res
+        
+    } catch (error) {
+        console.log(error)
+    }
+}

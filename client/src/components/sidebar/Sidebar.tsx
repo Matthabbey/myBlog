@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiFillFacebook,
   AiFillInstagram,
   AiFillTwitterSquare,
 } from "react-icons/ai";
 import { BsPinterest } from "react-icons/bs";
+import { useLocation } from "react-router-dom";
+import { getCategory, getSinglePost } from "../../api";
 import "./sidebar.css";
 
 const Sidebar = () => {
+  const [cats, setCats] = useState([])
+  const location = useLocation()
+  
+  const path = location.pathname.split("/")[2] 
+
+  useEffect(()=>{
+    getSinglePost(path).then((response)=>{
+      let result = (response?.data.findUser.categories)
+      console.log(result)
+      // setPost(result)
+      setCats
+    })
+  }, [])
   return (
     <div className="sidebar">
       <div className="sidebarItem">
@@ -45,3 +60,7 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+function setPost(result: any) {
+  throw new Error("Function not implemented.");
+}
+

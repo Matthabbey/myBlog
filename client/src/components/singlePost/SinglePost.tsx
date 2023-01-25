@@ -19,6 +19,7 @@ const SinglePost = () => {
 
     getSinglePost(path).then((response)=>{
       let result = (response?.data.findUser)
+      console.log(result)
       setPost(result)
     })
 
