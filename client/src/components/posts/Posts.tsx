@@ -9,8 +9,6 @@ interface Props{
 
 const Posts: React.FC<Props> = ({posts}) => {
   
-  console.log(posts);
-  
   return (
     <div className='posts'>
       {posts.map((p: any)=>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./post.css";
 
 interface Props {
@@ -20,8 +21,10 @@ const Post: React.FC<Props> = ({ post }) => {
           {post.categories.map((cat: any)=>(
             <span className="postCat">{cat.name}</span>
           ))}
-        </div>
+        </div> 
+        <Link to={`post/${post._id}`} className="link">
         <span className="postTitle">{post.title}</span>
+        </Link>
         <hr />
         <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
       </div>
