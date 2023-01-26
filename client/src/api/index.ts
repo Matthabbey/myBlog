@@ -4,7 +4,9 @@ import { useLocation } from "react-router-dom";
 const baseURL = "http://localhost:5000/"
 
 export const fetchPost = async ()=>{
+
     try {
+
         const response = await axios.get(`${baseURL}api/post/`)
         return response
         
@@ -26,8 +28,7 @@ export const getSinglePost = async (id: string) =>{
 
 export const getCategory = async ()=>{
     try {
-        const res = await axios.get(`${baseURL}api/post/`)
-        console.log(res);
+        const res = await axios.get(`${baseURL}api/cat/get`)
         return res
         
     } catch (error) {

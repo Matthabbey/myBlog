@@ -1,7 +1,7 @@
 import "./singlePost.css";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getSinglePost } from "../../api";
@@ -10,7 +10,6 @@ import { getSinglePost } from "../../api";
 const SinglePost = () => {
 
   const location = useLocation()
-  
   const path = location.pathname.split("/")[2] 
   const [post, setPost] = useState<any>({})
   // console.log(path);
@@ -19,7 +18,7 @@ const SinglePost = () => {
 
     getSinglePost(path).then((response)=>{
       let result = (response?.data.findUser)
-      console.log(result)
+      // console.log(result)
       setPost(result)
     })
 
@@ -54,7 +53,11 @@ const SinglePost = () => {
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Author: <b>{post.username}</b>
+            Author: 
+            <Link to={`/?user=${post.username}`} className="link" >
+            <b>{post.username}</b>
+            
+            </Link>
           </span>
           <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
         </div>

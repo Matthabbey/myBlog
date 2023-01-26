@@ -11,16 +11,11 @@ import "./sidebar.css";
 
 const Sidebar = () => {
   const [cats, setCats] = useState([])
-  const location = useLocation()
-  
-  const path = location.pathname.split("/")[2] 
 
   useEffect(()=>{
-    getSinglePost(path).then((response)=>{
-      let result = (response?.data.findUser.categories)
-      console.log(result)
-      // setPost(result)
-      setCats
+    getCategory().then((response)=>{
+      const cats = response?.data.AllCategories
+      setCats(cats)
     })
   }, [])
   return (
@@ -38,12 +33,11 @@ const Sidebar = () => {
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
         <ul className="sidebarList">
-          <li className="sidebarListItem">Life</li>
-          <li className="sidebarListItem">Music</li>
-          <li className="sidebarListItem">Sport</li>
-          <li className="sidebarListItem">Tech</li>
-          <li className="sidebarListItem">Cinema</li>
-          <li className="sidebarListItem">Styles</li>
+          {cats.map((c: any)=>(
+            <li className="sidebarListItem" key={c._id}>{c.name}</li>
+
+          ))}
+
         </ul>
       </div>
       <div className="sidebarItem">
